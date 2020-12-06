@@ -11,6 +11,9 @@ from gui.chat_room_window import ChatWindow
 from gui.enter_name_window import EnterNameWindow
 
 
+SERVER_IP = '192.168.1.36'  # This has to be set to whatever IP is printed to the console when you create a server.
+
+
 class NetworkChatApp:
     def __init__(self):
         pygame.init()
@@ -23,6 +26,7 @@ class NetworkChatApp:
         self.background_surface.fill(pygame.Color('#404040'))
 
         self.ui_manager = UIManager(self.window_size)
+        self.ui_manager.preload_fonts([{'name': 'fira_code', 'point_size': 14, 'style': 'bold'}])
 
         self.start_server_button = UIButton(relative_rect=pygame.Rect(325, 200, 150, 40),
                                             text='Start Server',
@@ -55,7 +59,7 @@ class NetworkChatApp:
                         self.server = Server()
 
                     if event.ui_element == self.join_server_button:
-                        self.client = Client(server_ip='192.168.1.26', app=self)
+                        self.client = Client(server_ip='192.168.1.36', app=self)
                         enter_name_rect = pygame.Rect(100, 100, 300, 60)
                         enter_name_rect.center = (int(self.window_size[0]/2), int(self.window_size[1]/2))
                         self.name_entry_window = EnterNameWindow(rect=enter_name_rect,
