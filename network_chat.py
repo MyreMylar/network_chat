@@ -54,7 +54,7 @@ class NetworkChatApp:
                 if event.type == pygame.QUIT:
                     self.running = False
 
-                if event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_BUTTON_PRESSED:
+                if event.type == pygame_gui.UI_BUTTON_PRESSED:
                     if event.ui_element == self.start_server_button:
                         self.server = Server()
 
@@ -65,7 +65,7 @@ class NetworkChatApp:
                         self.name_entry_window = EnterNameWindow(rect=enter_name_rect,
                                                                  manager=self.ui_manager)
 
-                if event.type == pygame.USEREVENT and event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
+                if event.type == pygame_gui.UI_TEXT_ENTRY_FINISHED:
                     if self.chat_window is not None and event.ui_element == self.chat_window.chat_entry:
                         self.client.send_chat_message(event.text)
                         self.chat_window.chat_entry.set_text('')
